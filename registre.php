@@ -31,7 +31,7 @@
 		  
 
 			
-			echo "L'inscription a été effectuée avec succès!";
+			
 		  
 		?>
 	</body>
