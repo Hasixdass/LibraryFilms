@@ -5,5 +5,5 @@ tandis que l'administrateur est chargé de la gestion des données
 ## site:
 http://bbfilm.free.nf/
 ## Mot de passe de l'administration:
-Nom d'utilisateur: admin
+Nom d'utilisateur: admin<br>
 Mot de passe: admin
