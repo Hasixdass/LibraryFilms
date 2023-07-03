@@ -1,134 +1,20 @@
 <html>
 	<head>
 		<title>Acceuil</title>
-		<style>
-			body
-			{
-				background: url('image/hogwartsi.jpg') ;
-				background-repeat: no-repeat;
-				background-size: cover;
-			}
-			header
-			{
-				background-color: 
-				border-radius: 4px;
-				display: flex;
-				align-items: center;
-				
-			}
-			.recherche input[type="submit"]
-			{
-				padding: 20px 1px;
-				background-color: #4caf50;
-				color: #ffffff;
-				border: none;
-				border-radius: 4px;
-				cursor: pointer;
-			}
-			.recherche input[type="text"]
-			{
-				padding: 20px 10px;
-				border: none;
-				border-radius: 4px;
-			}
-			.recherche
-			{
-				margin: auto;
-				display: flex;
-				align-items: center;
-				text-align: center;
-			}
-			.principal
-			{
-				margin: 30px auto;
-				width: 1200px;
-				padding: 40px;
-				background-color: rgba(255, 255, 255, 0.3);
-				box-shadow: 0px 0px 10px #888;
-				border-radius: 5px;
-			}
-			.solde
-			{
-				background-color: skyblue;
-				margin: auto;
-				align-items: center;
-				padding: 50px;
-			}
-			.image
-			{
-				display: inline-block;
-				margin-right: 10px;
-				overflow-x: auto;
-				display: flex;
-			}
-			div img
-			{
-				padding: 10px;
-			}
-			aside
-			{
-				max-width: 200px;
-				background-color: rgba(255, 2, 255, 0.8);
-			}
-			section
-			{
-				display: flex;
-				flex-wrap: wrap;
-			}
-			section > aside, section > article
-			{
-				flex: 1;
-				margin: 10px;
-				background-color: rgba(255, 255, 255, 0.5);
-				padding: 20px;
-				box-sizing: border-box;
-				border-radius: 5px;
-			}
-			h3
-			{
-				text-align: center;
-			}
-			table 
-			{
-				width: 100%;
-				border-collapse: collapse;
-				margin-top: 10px;
-			}
-			
-			th, td 
-			{
-				padding: 8px;
-				border-bottom: 1px solid #ddd;
-			}
-			#prix , #prix2
-			{
-				text-align: center;
-			}
-			th 
-			{
-				background-color: #f2f2f2;
-				font-weight: normal;
-			}
-			footer
-			{
-				background-color: #f9f9f9;
-				padding: 10px;
-				text-align: center;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="style/acceuil.css">
 	</head>
 	<body>
 		<?php
 			session_start();
 			if (!isset($_SESSION["username"])) 
 			{
-				header("Location: login.php");
+				header("Location: index.html");
 				exit();
 			}
 			if ($_SERVER["REQUEST_METHOD"] == "POST") 
 			{
 				unset($_SESSION["username"]);
-				header("Location: login.php");
+				header("Location: index.html");
 				exit();
 			}
 			include "bddConnect.php";
@@ -139,7 +25,7 @@
 			$ligne = mysqli_fetch_array($res);
 			echo '<div class="principal">';
 				echo '<header>';
-					echo '<img src="image/BbFilm-20-06-2023.png">';
+					echo '<a href="acceuil.php"> <img src="image/BbFilm-20-06-2023.png"></a>';
 					echo '<nav class="recherche">';
 						echo '<form method="POST" action="#">';
 							echo '<input type="text" placeholder="Recherche">';
@@ -214,3 +100,4 @@
 		?>
 	</body>
 </html>
+
