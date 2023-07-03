@@ -1,0 +1,55 @@
+body 
+{
+	background: url('../image/admin.jpeg') ;
+	background-repeat: no-repeat;
+	background-size: cover;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+div 
+{
+	margin: 100px auto;
+	max-width: 400px;
+	padding: 40px;
+	background-color: rgba(255, 255, 255, 0.8);
+	box-shadow: 0px 0px 10px #888;
+	border-radius: 5px;
+	text-align: center;
+}
+h1 
+{
+	font-size: 2em;
+	margin-bottom: 30px;
+}
+input[type="text"], input[type="password"] 
+{
+	padding: 10px;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+input[type="submit"] 
+{
+	padding: 10px 30px;
+	border: none;
+	background-color: #4CAF50;
+	color: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+input[type="submit"]:hover 
+{
+	background-color: #3e8e41;
+}
+p 
+{
+	font-size: 1.2em;
+	margin-top: 20px;
+}
+a 
+{
+	color: #4CAF50;
+	text-decoration: none;
+}
