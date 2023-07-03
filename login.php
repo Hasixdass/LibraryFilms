@@ -1,65 +1,11 @@
 <HTML>
 	<HEAD>
 		<TITLE>Login</TITLE>
-		<style>
-			body 
-			{
-				background: url('image/star_wars_the_last_jedi_wide.jpg') ;
-				background-size: cover;
-				background-repeat: no-repeat;
-			
-			}
-			div 
-			{
-				margin: 100px auto;
-				width: 400px;
-				padding: 40px;
-				background-color: rgba(255, 255, 255, 0.8);
-				box-shadow: 0px 0px 10px #888;
-				border-radius: 5px;
-				text-align: center;
-			}
-			h1 
-			{
-				font-size: 2em;
-				margin-bottom: 30px;
-			}
-			input[type="text"], input[type="password"] 
-			{
-				padding: 10px;
-				margin-bottom: 20px;
-				border: none;
-				border-radius: 5px;
-				background-color: rgba(255, 255, 255, 0.7);
-			}
-			input[type="submit"] 
-			{
-				padding: 10px 30px;
-				border: none;
-				background-color: #4CAF50;
-				color: #fff;
-				border-radius: 5px;
-				cursor: pointer;
-			}
-			input[type="submit"]:hover 
-			{
-				background-color: #3e8e41;
-			}
-			p 
-			{
-				text-align: center;
-				font-size: 1.2em;
-				margin-top: 20px;
-			}
-			a 
-			{
-				color: #4CAF50;
-				text-decoration: none;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="style/login.css">
 	</HEAD>
 	<BODY>
 	    <?php
+		  session_start();
 		  include "bddConnect.php";
 		  $username = $_POST["username"] ?? "";
 		  $password = $_POST["password"] ?? "";
@@ -70,13 +16,6 @@
 			$sql = "SELECT username, password, solde FROM login WHERE username='$username'";
 			$res = mysqli_query($con, $sql);
 
-			session_start();
-			if (isset($_SESSION["username"])) 
-			{
-			  header("Location: acceuil.php");
-			  exit();
-			}
-			
 			// Vérifier si la requête a renvoyé un résultat
 			if (mysqli_num_rows($res) > 0) 
 			{
