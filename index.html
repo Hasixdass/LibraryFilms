@@ -1,72 +1,21 @@
 <html>
 	<head>
 		<title>Acceuil</title>
-		<style>
-			body
-			{
-				background: url("image/gammel-Filmprojektoer.jpg");
-				background-size: cover;
-			}
-			h1
-			{
-				font-family:  comic sans ms;
-				font-size: 3em;
-				color: #181C24;
-				text-align : center;
-			}
-			aside 
-			{
-				margin: 100px auto;
-				max-width: 650px;
-				padding: 45px;
-				background-color: rgba(224, 199, 178, 0.3);
-				box-shadow: 0px 0px 40px #888;
-				border-radius: 20px;
-				position: absolute;
-				bottom: 0;
-				right: 30;
-			}
-			#login
-			{
-				padding: 10px 30px;
-				border: none;
-				background-color: #4CAF50;
-				color: #fff;
-				border-radius: 5px;
-				cursor: pointer;
-			}
-			#admin
-			{
-				padding: 10px 30px;
-				border: none;
-				background-color: #4CAF50;
-				color: #fff;
-				border-radius: 5px;
-				cursor: pointer;
-			}
-			#intro
-			{
-				font-size: 1.3em;
-			}
-			div
-			{
-				text-align : center;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="style/index.css">
 	</head>
 	<body>
 		
-		<div>
+		<header>
 			<img src="image/Biblioth-que-de-films-18-06-2023.png">
-		</div>
+		</header>
 		<aside>
 			<h2>Description</h2>
-			<p id="intro">Grâce à notre bibliothèque d'achat de films,<br> profitez de vos films préférés en toute simplicité depuis le confort de votre maison.</p>
-			<FORM method="POST" action="login.html">
+			<p id="intro">Gr&acirc;ce &agrave; notre biblioth&egrave;que d'achat de films,<br> profitez de vos films pr&eacute;f&eacute;r&eacute;s en toute simplicit&eacute; depuis le confort de votre maison.</p>
+			<FORM method="POST" action="login.php">
 				<button type="submit" id="login">Login</button>
-				<p>Pas encore inscrit ? <a href="inscription.html">Inscrivez-vous ici</a>.</p>
+				<p>Pas encore inscrit ? <a href="inscription.php">Inscrivez-vous ici</a>.</p>
 			</FORM>
-			<FORM method="POST" action="loginAdmin.html">
+			<FORM method="POST" action="loginAdmin.php">
 				<button type="submit" id="admin" >Admin</button>
 			</FORM>
 		</aside>
