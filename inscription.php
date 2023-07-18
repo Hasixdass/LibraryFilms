@@ -1,45 +1,58 @@
+<?php
+	//connecter  à la base de données
+    include "bddConnect.php";
+	
+    // Récupérer les données du formulaire
+    $username = $_POST['nom'] ?? "";
+    $mail = $_POST['email'] ?? "";
+    $password = $_POST['pass'] ?? "";
+    $password_confirm = $_POST['pass-confirm'] ?? "";
+	
+    // Masquer le mot de passe avec la fonction de hachage
+    $passMasquer = password_hash($password, PASSWORD_DEFAULT);
+    
+	// Vérifier si les champs du formulaire ne sont pas vides
+    if (!empty($username) && !empty($password) && !empty($password_confirm) && !empty($mail)) 
+	{
+		// Vérifier si le nom d'utilisateur est déjà utilisé
+        $sql = "SELECT username FROM login WHERE username='$username'";
+        $res = mysqli_query($con, $sql);
+        
+        if (mysqli_num_rows($res) == 0) 
+		{
+			// Vérifier si les mots sont correcte
+            if ($password == $password_confirm) 
+			{
+				 // Insérer les données de l'utilisateur dans la base de données
+                $sql2 = "INSERT INTO login (username, password, solde, email) VALUES ('$username','$passMasquer',5000, '$mail')";
+                mysqli_query($con, $sql2);
+				
+				//Fermeture de la base de donnée
+                mysqli_close($con);
+				
+                header("Location: login.php");
+                exit();
+            } 
+			else 
+			{
+				// Afficher un message d'erreur si les mots ne sont pas correcte
+                echo '<p> Mot de passe incorrect </p>';
+            }
+        }
+		else 
+		{
+			// Afficher un message d'erreur si le nom d'utilisateur est déjà utilisé
+            echo "<p> Nom d'utilisateur existe </p>";
+        }
+    }
+?>
+
 <html>
 	<head>
 		<title>Page d'inscription</title>
 		<link rel="stylesheet" type="text/css" href="style/inscription.css">
 	</head>
 	<body>
-		<?php
-
-			$username = $_POST['nom'] ?? "";
-			$mail = $_POST['email'] ?? "";
-			$password = $_POST['pass']?? "";
-			$password_confirm = $_POST['pass-confirm'] ?? "";
-			include "bddConnect.php";
-
-			if (!empty($username) && !empty($password) && !empty($password_confirm) && !empty($mail)) 
-			{
-				$sql = "SELECT username FROM login WHERE username='$username'";
-				$res = mysqli_query($con, $sql);
-				if (mysqli_num_rows($res) == 0)
-				{	
-					if ($password == $password_confirm) 
-					{
-							
-						$sql2 = "INSERT INTO login (username, password, solde, email) VALUES ('$username','$password',5000, '$mail')";
-						mysqli_query($con, $sql2);
-						mysqli_close($con);
-						header("Location: login.php");
-						exit();
-					}
-					else 
-					{
-						echo '<p> Mot de passe incorrect </p>';
-					}
-				}
-				else
-				{
-					echo "<p> Nom d'utilisateur existe </p>";
-				}
-			}
-		
-		?>
-
 		<div>
 			<h1>Inscription</h1>
 			<form method="POST" action="inscription.php">
@@ -64,5 +77,3 @@
 		</footer>
 	</body>
 </html>
-
-
