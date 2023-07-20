@@ -1,3 +1,10 @@
+<?php
+    // activer la mise en mémoire tampon de sortie
+    ob_start();
+	
+	// Démarrer une session
+	session_start();
+?>
 <html>
 	<head>
 		<title>Accueil</title>
@@ -5,23 +12,34 @@
 	</head>
 	<body>
 		<?php
-			session_start();
+			// Vérifie si l'utilisateur est connecté
 			if (!isset($_SESSION["username"])) 
 			{
-				header("Location: ../index.html");
+				// Redirige vers l'index s'il n'est pas connecté
+				header("Location: index.html");
 				exit();
 			}
+			// Vérifie si le formulaire a été soumis
 			if ($_SERVER["REQUEST_METHOD"] == "POST") 
 			{
 				unset($_SESSION["username"]);
-				header("Location: ../index.html");
+				header("Location: index.html");
 				exit();
 			}
+			//connecter  à la base de données
 			include "../bddConnect.php";
+			
+			// Requête pour obtenir les informations de l'utilisateur connecté
 			$sql = "SELECT username, password, solde FROM login WHERE username='".$_SESSION["username"]."'";
+			
+			// Requête pour obtenir les genres de films
 			$sql2 = "SELECT id_genre, nom_genre FROM genre ORDER BY nom_genre";
+			
+			// Exécute les requêtes
 			$res = mysqli_query($con, $sql);
 			$res2 = mysqli_query($con, $sql2);
+			
+			// Récupère la première ligne de résultats de la requête de l'utilisateur
 			$ligne = mysqli_fetch_array($res);
 		?>
 		<div class="principal">
@@ -34,11 +52,11 @@
 					</form>
 				</nav>
 				<div class="solde">
-					<label> NOM D'UTILISATEUR: <?php echo $ligne[0]; ?> </label><br>
-					<label>Solde : <?php echo $ligne[2]; ?> </label>
-					<form method="post">
-						<input type="submit" value="Déconnexion">
-					</form>
+					<font color="white">
+						<label> NOM D'UTILISATEUR: <?php echo $ligne[0]; ?> </label><br>
+						<label>Solde : <?php echo $ligne[2]; ?></label><br><br>
+					</font>
+					<button onclick="window.location.href='../logout.php'">Deconnexion</button>
 				</div>
 			</header>
 			<nav class="pic">
@@ -67,6 +85,7 @@
 				<aside>
 					<h3>Genre</h3>
 					<?php
+						// Tableau des liens vers les genres de films
 						$liens = array(
 						39 => "action.php",
 						40 => "aventure.php",
@@ -80,74 +99,88 @@
 						48 => "fiction.php"
 						);
 
-					while ($ligne2 = mysqli_fetch_assoc($res2)) 
-					{
-						$genreId = $ligne2["id_genre"];
-						$genre = $ligne2["nom_genre"];
-						
-						if (isset($liens[$genreId])) 
+						while ($ligne2 = mysqli_fetch_assoc($res2)) 
 						{
-							echo '<ul><li><a href="' . $liens[$genreId] . '">' . $genre . '</a></li></ul>';
-						} 
-					}
+							// Récupérer l'ID du genre et le nom du genre
+							$genreId = $ligne2["id_genre"];
+							$genre = $ligne2["nom_genre"];
+							
+							// Vérifier si le lien correspondant à l'ID du genre existe dans le tableau
+							if (isset($liens[$genreId])) 
+							{
+								// Afficher le lien vers le genre de film
+								echo '<ul><li><a href="' . $liens[$genreId] . '">' . $genre . '</a></li></ul>';
+							} 
+						}
 					?>
 				</aside>
 				<article>
-					<h2>FILM</h2>
+					<h2>FILM : Horreur</h2>
 					<table border=1>
 						<tr>
 							<th>Nom du film</th>
 							<th>Prix</th>
 						</tr>
 						<?php
-						$elements_par_page = 10;
-
-						if (isset($_GET['page']))
-						{
-							$page_en_cours = $_GET['page'];
-						}
-						else 
-						{
-							$page_en_cours = 1;
-						}
-
-						$premier_element = ($page_en_cours - 1) * $elements_par_page;
-						$req="SELECT film.id_images, film.nom_film, prix.prix
-									FROM film
-									JOIN prix ON film.id_prix = prix.id_prix
-									JOIN genre ON film.id_genre = genre.id_genre
-									WHERE genre.nom_genre = 'Horreur' LIMIT $premier_element, $elements_par_page ";
-						$resultat = mysqli_query($con, $req);
-
-						while ($ligne3 = mysqli_fetch_array($resultat)) 
-						{
-							echo "<tr>";
-							echo "<td><a href=\"../pageAchat.php?IDfilm=" . $ligne3['id_images'] . "\">" . $ligne3['nom_film'] . "</a></td>";
-							echo "<td>".$ligne3['prix']."</td>";
-							echo "</tr>";
-						}
-						$count="SELECT COUNT(*) AS total FROM film";
-						$resultat_total = mysqli_query($con, $count);
-						$ligne3_total = mysqli_fetch_array($resultat_total);
-						$total_elements = $ligne3_total['total'];
-
-						$nombre_de_pages = ceil($total_elements / $elements_par_page);
-
-						echo "<div>";
-						for ($i = 1; $i <= $nombre_de_pages; $i++) 
-						{
-							if ($i == $page_en_cours) 
+							// Nombre d'éléments par page
+							$elements_par_page = 10;
+							
+							// Vérifier si le paramètre GET 'page' existe
+							if (isset($_GET['page']))
 							{
-								echo "<span>$i</span>&nbsp;";
-							} 
+								// Récupérer le numéro de page actuel
+								$page_en_cours = $_GET['page'];
+							}
 							else 
 							{
-								echo "<a href=\"".$_SERVER['PHP_SELF']."?page=$i\">$i</a>&nbsp;";
+								$page_en_cours = 1;
 							}
-						}
-						echo "</div>";
+							// Calculer l'index du premier élément à récupérer
+							$premier_element = ($page_en_cours - 1) * $elements_par_page;
+							
+							// Requête pour récupérer les films de la catégorie 'Horreur' avec pagination
+							$req="SELECT film.id_images, film.nom_film, prix.prix
+										FROM film
+										JOIN prix ON film.id_prix = prix.id_prix
+										JOIN genre ON film.id_genre = genre.id_genre
+										WHERE genre.nom_genre = 'Horreur' LIMIT $premier_element, $elements_par_page ";
+										
+							// Exécuter la requête
+							$resultat = mysqli_query($con, $req);
+							
+							// Afficher les résultats des films dans une table
+							while ($ligne3 = mysqli_fetch_array($resultat)) 
+							{
+								echo "<tr>";
+								echo "<td><a href=\"../pageAchat.php?IDfilm=" . $ligne3['id_images'] . "\">" . $ligne3['nom_film'] . "</a></td>";
+								echo "<td>".$ligne3['prix']."</td>";
+								echo "</tr>";
+							}
+							// Requête pour obtenir le nombre total d'éléments (films)
+							$count="SELECT COUNT(*) AS total FROM film";
+							$resultat_total = mysqli_query($con, $count);
+							$ligne3_total = mysqli_fetch_array($resultat_total);
+							$total_elements = $ligne3_total['total'];
 
-						mysqli_close($con);
+							// Calculer le nombre total de pages nécessaires
+							$nombre_de_pages = ceil($total_elements / $elements_par_page);
+
+							// Afficher la pagination avec les liens vers les pages
+							echo "<div>";
+							for ($i = 1; $i <= $nombre_de_pages; $i++) 
+							{
+								if ($i == $page_en_cours) 
+								{
+									echo "<span>$i</span>&nbsp;";
+								} 
+								else 
+								{
+									echo "<a href=\"".$_SERVER['PHP_SELF']."?page=$i\">$i</a>&nbsp;";
+								}
+							}
+							echo "</div>";
+							//Fermeture de la base de donnée
+							mysqli_close($con);
 						?>
 					</table>  
 				</article>
