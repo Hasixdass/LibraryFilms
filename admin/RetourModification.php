@@ -1,74 +1,19 @@
-<!DOCTYPE html>
+<?php
+    // activer la mise en mémoire tampon de sortie
+    ob_start();
+	
+	// Démarrer une session
+	session_start();
+?>
 <html>
 	<head>
 		<title>Ma page combinée</title>
-		<style>
-			body
-			{
-				background: url("../image/film-1668917_1280.jpg");
-				background-repeat: no-repeat;
-				background-size: cover;
-				
-			}
-			.container 
-			{
-			  display: flex;
-			  flex-direction: row;
-			  justify-content: space-between;
-			  align-items: stretch;
-			  height: 100vh;
-			  width: 100vw;
-			}
-
-			aside 
-			{
-			  display: flex;
-			  flex-direction: column;
-			  justify-content: flex-start;
-			  align-items: center;
-			  background-color: #eee;
-			  padding: 20px;
-			  width: 20%;
-			}
-			aside p {
-			  margin-bottom: 0px;
-			}
-			article 
-			{
-			  display: flex;
-			  flex-direction: column;
-			  justify-content: center;
-			  align-items: center;
-			  
-			  padding: 20px;
-			  width: 80%;
-			  background-color: rgba(255, 255, 255, 0.3);
-			  
-			}
-
-			article p 
-			{
-			  margin-bottom: 20px;
-			}
-			button
-			{
-				padding: 10px 30px;
-				border: none;
-				background-color: #4CAF50;
-				color: #fff;
-				border-radius: 10px;
-				cursor: pointer;
-			}
-			.bt
-			{
-				padding-top:70px;
-				padding-bottom: 10px;
-				
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="../style/acceuilAdmin.css">
+		
+		// Fonctions JavaScript pour charger le contenu dans la balise 'article' 
 		<script>
 			function listeFilm() {
-				fetch('list.php')
+				fetch('listFilm.php')
 					.then(response => response.text())
 					.then(html => {
 						document.querySelector('article').innerHTML = html;
@@ -92,7 +37,7 @@
 					.catch(error => console.error(error));
 			}
 			function reglagePrix() {
-				fetch('reglagePrix.html')
+				fetch('reglagePrix.php')
 					.then(response => response.text())
 					.then(html => {
 						document.querySelector('article').innerHTML = html;
@@ -104,7 +49,6 @@
 	</head>
 	<body>
 		<?php
-		session_start();
 		if (!isset($_SESSION['username'])) 
 		{
 			header("Location: ../index.html");
@@ -113,10 +57,13 @@
 		?>
 		<div class="container">
 			<aside>
-				<h2>Espace Admin</h2>
-				
-				<p>Admin</p>
-				<button onclick="window.location.href='#'">Deconnexion</button>
+				<font color="white">
+					<h2>Espace Admin</h2>
+				</font>
+				<font color="red">
+					<p>Admin</p>
+				</font>
+				<button onclick="window.location.href='../logout.php'">Deconnexion</button>
 				<div class="bt">
 					<button onclick="window.location.href='bbFilm.php'">Acceuil</button><br><br>
 					<button onclick="listeFilm()">Liste de tous les Films</button><br><br>
@@ -126,7 +73,6 @@
 				</div>
 			</aside>
 			<article>
-				<p>Ceci est le contenu de la page 2.</p>
 				<?php include "modificationGenreEtPrix.php" ?>
 			</article>
 		</div>
