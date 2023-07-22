@@ -1,29 +1,8 @@
 <HTML>
-	<HEAD> <TITLE> Modification </TITLE> </HEAD>
-	<style>
-			label {
-				font-weight: bold;
-			}
-			
-			input[type="text"] {
-				margin-bottom: 10px;
-				padding: 5px;
-				width: 200px;
-			}
-			
-			input[type="submit"] {
-				background-color: #4CAF50;
-				border: none;
-				color: white;
-				padding: 10px 20px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				margin-top: 10px;
-				cursor: pointer;
-			}
-		</style>
+	<HEAD> 
+		<TITLE> Modification </TITLE>
+		<link rel="stylesheet" type="text/css" href="../style/modificationGenreEtPrix.css">
+	</HEAD>
 	<BODY>
 		<?php
 		  $ID=$_POST['ID'];
