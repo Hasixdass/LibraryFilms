@@ -7,7 +7,7 @@
 ?>
 <html>
 	<head>
-		<title>Ma page combinée</title>
+		<title>Page OK</title>
 		<link rel="stylesheet" type="text/css" href="../style/acceuilAdmin.css">
 		
 		// Fonctions JavaScript pour charger le contenu dans la balise 'article' 
@@ -73,7 +73,8 @@
 				</div>
 			</aside>
 			<article>
-				<?php include "ok.html"; ?>
+				<img src="../image/L-enregistrement-a-t-r-alis-04-07-2023.png" class="center-img"><br>
+	  			<img src="../image/148767.png" class="center-img">
 			</article>
 		</div>
 	</body>
