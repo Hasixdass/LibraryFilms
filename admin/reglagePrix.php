@@ -1,99 +1,53 @@
 <html>
 	<head>
-		<title>Reglage</title>
-		<style>
-			body 
-			{
-			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
-		}
-		
-		h1 {
-			text-align: center;
-			color: #333;
-		}
-		
-		#genre 
-		{
-			border: 2px solid #ccc;
-			border-radius: 10px;
-			padding: 60px;
-			margin-top: 50px;
-			width: 600px;
-			margin-left: auto;
-			margin-right: auto;
-			background-color: rgba(224, 199, 178, 0.5);
-		}
-		
-		label {
-			display: block;
-			margin-bottom: 10px;
-			color: #666;
-		}
-		
-		input[type="text"],
-		input[type="number"],
-		input[type="submit"] 
-		{
-			display: block;
-			width: 100%;
-			padding: 10px;
-			margin-bottom: 20px;
-			border: none;
-			border-radius: 5px;
-			box-shadow: 0px 0px 3px rgba(0,0,0,0.1);
-		}
-		
-		input[type="submit"] {
-			background-color: #333;
-			color: #fff;
-			cursor: pointer;
-			transition: background-color 0.2s ease;
-		}
-		
-		input[type="submit"]:hover {
-			background-color: #555;
-		}
-		
-		p {
-			color: red;
-			font-weight: bold;
-		}
-			
-		</style>
+		<title>Reglage Prix</title>
+		<link rel="stylesheet" type="text/css" href="../style/reglagePrix.css">
 	</head>
 	<body>
 	  <?php
+		// Récupérer les données envoyées par le formulaire
 		$genre = $_POST['genre'] ?? "";
 		$prix = $_POST['prix'] ?? "";
+		
+		// connexion à la base de données
 		include "../bddConnect.php";
-		// Vérification de la connexion
+		
+		// Vérification de la connexion à la base de données
 		if ($con->connect_error) 
 		{
+			// Afficher un message d'erreur en cas d'échec de connexion
 			die("Connection failed: " . $con->connect_error);
 		}
+		// Vérifier si les champs genre et prix ne sont pas vides
 		if (!empty($genre) && !empty($prix)) 
 		{
-			// Vérification si les données existent déjà dans la base de données
+			// Requête pour la vérification des données s'ils existent déjà dans la base de données
 			$sql = "SELECT nom_genre FROM genre WHERE nom_genre='$genre'";
 			$res = mysqli_query($con, $sql);
 
 			// Si les données n'existent pas encore, insertion dans la base de données
-			if (mysqli_num_rows($res) == 0) {
+			if (mysqli_num_rows($res) == 0) 
+			{
 				$sql2 = "INSERT INTO genre (nom_genre) VALUES ('$genre')";
 				mysqli_query($con, $sql2);
+				
+				// Requête pour récupérer l'ID du genre inséré
 				$sqlID = "SELECT id_genre FROM genre WHERE nom_genre = '$genre'";
 				$resID = mysqli_query($con, $sqlID);
-				if (mysqli_num_rows($resID) > 0) {
+				if (mysqli_num_rows($resID) > 0) 
+				{
 					$row = mysqli_fetch_assoc($resID);
 					$idG = $row['id_genre'];
+					
+					// Requête pour insérer le prix du genre dans la table prix
 					$sql3 = "INSERT INTO prix (id_genre, prix) VALUES ('$idG', '$prix')";
 					mysqli_query($con, $sql3);
-					header("Location: acceuilAdmin.php");
+					header("Location: RetourOk.php");
 					exit;
 				}
 			} 
-		} 
+		}
+		// Fermer la connexion à la base de données
 		mysqli_close($con);
 	  ?>
 		<div>
