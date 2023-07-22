@@ -7,7 +7,7 @@
 ?>
 <html>
 	<head>
-		<title>Ma page combinée</title>
+		<title>Reglage prix</title>
 		<link rel="stylesheet" type="text/css" href="../style/acceuilAdmin.css">
 		
 		// Fonctions JavaScript pour charger le contenu dans la balise 'article' 
