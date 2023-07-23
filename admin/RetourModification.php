@@ -44,7 +44,14 @@
 					})
 					.catch(error => console.error(error));
 			}
-			
+			function solde() {
+				fetch('solde.php')
+					.then(response => response.text())
+					.then(html => {
+						document.querySelector('article').innerHTML = html;
+					})
+					.catch(error => console.error(error));
+			}
 		</script>
 	</head>
 	<body>
@@ -70,6 +77,7 @@
 					<button onclick="ajout()">Ajouter un film</button><br><br>
 					<button onclick="prixFilm()">Le prix du film</button><br><br>
 					<button onclick="reglagePrix()">Réglage des prix</button><br><br>
+					<button onclick="solde()">Solde de l'utilisateur</button><br><br>
 				</div>
 			</aside>
 			<article>
