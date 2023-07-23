@@ -250,7 +250,7 @@ AND prix.id_genre='$ID' ;
 
 ### 1. INTERFACE
 
-![[image1.png]]
+![interface](image/image1.png)
 - **Page initiale**
 	- index.html : point d'entrée au site web http://bbfilm.rf.gd/index.html
 
@@ -264,7 +264,7 @@ AND prix.id_genre='$ID' ;
 
 ### 2. PAGE DE L'UTILISATEUR
 
-![[image2.png]]
+![acceuil](image/image2.png)
 
 - **Page d'information de la base de donnée**
 	- bddConnect.php
@@ -279,7 +279,7 @@ AND prix.id_genre='$ID' ;
 
 ### 3. PAGE DE l'ADMINISTRATEUR
 
-![[image3.png]]
+![admin](image/image3.png)
 - **Page d'acceuil de l'administration**
 	- acceuilAdmin.php
 
