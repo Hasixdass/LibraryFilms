@@ -1,0 +1,61 @@
+/* Style pour le formulaire de recherche */
+form {
+  margin: 20px auto;
+  text-align: center;
+}
+
+input[type="text"] {
+  padding: 5px;
+  font-size: 16px;
+}
+
+input[type="submit"] {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style pour les résultats de recherche */
+h2 {
+  margin-top: 30px;
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Style pour le formulaire de modification */
+form[action='modifier.php'] {
+  margin-top: 30px;
+  text-align: center;
+}
+
+input[name='nouvel_email'] {
+  padding: 5px;
+  font-size: 16px;
+}
+
+/* Style pour le bouton de modification */
+input[type='submit'][value='Modifier'] {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #FF5733;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
