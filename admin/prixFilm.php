@@ -17,7 +17,7 @@
 		 {
 			// Si la connexion est réussie, afficher un titre pour la section de prix des films
 			echo "<h2>Le prix du films: </h2> <BR>";
-			
+			echo "<label><b><u>Remarque:</u></b> Si l'un de ces genres est retiré, les films correspondants ne seront plus visibles. </label> <BR>";
 			// Requête pour récupérer les données des genres et leurs prix associés depuis les tables "genre" et "prix"
 			$sql="  SELECT genre.id_genre ,nom_genre, prix 
 					FROM genre  JOIN prix
