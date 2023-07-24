@@ -1,24 +1,27 @@
-# LibraryFilms
+# BibliothèqueFilms
+Créé par :  
+Nom : RAFIDARIMANANA  
+Prénom : Hasina Nandrianina
 
 ## Bibliothèque de films:  
 Création d'une page utilisateur permettant aux utilisateurs d'acheter et de découvrir les dernières nouveautés du film, tandis que l'administrateur est chargé de la gestion des données
 
-## site (new) update : http://bbfilm.rf.gd/
+## mise à jour du site (nouveau) : http://bbfilm.rf.gd/
 
 ## Mot de passe de l'administration:
-Nom d'utilisateur : admin<br>
+Nom d'utilisateur : admin<Br>
 Mot de passe : admin
 
-# PRESENTATION DU PROJET
-# I. Base de donnée
+# PRÉSENTATION DU PROJET
+# I. Base de données
 
-### Diagramme de la base de donnés
+### Diagramme de la base de données
 
 ![diagramme](image/diagramme.jpg)
 
-### Création de la base de donnée: "libraryfilms"
-```MYSQL
-CREATE DATABASE libraryfilms;
+### Création de la base de données : "libraryfilms"
+```MySQL
+CRÉER BASE DE DONNÉES bibliothèquefilms;
 ```
 
 ### Pour utiliser la base de données créer
