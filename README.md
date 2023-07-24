@@ -14,6 +14,7 @@ Mot de passe : admin
 
 ### Diagramme de la base de donnés
 
+![diagramme](image/diagramme.jpg)
 
 ### Création de la base de donnée: "libraryfilms"
 ```MYSQL
