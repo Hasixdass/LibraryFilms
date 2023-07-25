@@ -1,7 +1,7 @@
-# BibliothèqueFilms
+# Libraryfilms 
 
 Créé par :  
-Nom : RAFIDiARIMANANA  
+Nom : RAFIDIARIMANANA  
 Prénom : Hasina Nandrianina
 
 
@@ -23,7 +23,7 @@ Mot de passe : admin
 
 ### Création de la base de données : "libraryfilms"
 ```MySQL
-CRÉER BASE DE DONNÉES bibliothèquefilms;
+CREATE DATABASE libraryfilms;
 ```
 
 ### Pour utiliser la base de données créer
