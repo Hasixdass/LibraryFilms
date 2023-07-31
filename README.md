@@ -8,7 +8,9 @@ Prénom : Hasina Nandrianina
 ## Bibliothèque de films:  
 Création d'une page utilisateur permettant aux utilisateurs d'acheter et de découvrir les dernières nouveautés du film, tandis que l'administrateur est chargé de la gestion des données
 
-## mise à jour du site (nouveau) : http://bbfilm.rf.gd/
+### <font color="red">En raison du blocage du site précédent, j'en ai créé deux autres pour éviter que cela se reproduise:</font>
+## site N°1 (new) update : http://bbfilm.rf.gd/
+## site N°2 (new) update : https://bbfilm.000webhostapp.com/
 
 ## Mot de passe de l'administration:
 Nom d'utilisateur : admin<Br>
